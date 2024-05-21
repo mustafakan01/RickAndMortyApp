@@ -2,6 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const EpisodeList = ({ episode, navigation }) => {
+  // episode nesnesinin tanımlı olduğunu kontrol et
+  if (!episode || !episode.name) {
+    return null; // Eğer episode tanımlı değilse veya name özelliği tanımlı değilse, bileşen null dönsün
+  }
+
   return (
     <TouchableOpacity
       style={styles.container}

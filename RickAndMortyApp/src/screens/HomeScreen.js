@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { getEpisodes } from '../api/api';
 import EpisodeList from '../components/EpisodeList';
-import Pagination from '../components/Pagination'; // Pagination bileşenini ekleyin
+import Pagination from '../components/Pagination';
 
 const HomeScreen = ({ navigation }) => {
   const [episodes, setEpisodes] = useState([]);
@@ -15,7 +15,11 @@ const HomeScreen = ({ navigation }) => {
       try {
         setLoading(true);
         const data = await getEpisodes(page);
-        setEpisodes(data.results);
+        if (data && data.results) { // Verinin beklediğiniz şekilde geldiğinden emin olun
+          setEpisodes(data.results);
+        } else {
+          setError("Unexpected data format received from API");
+        }
       } catch (err) {
         setError(err.message);
       } finally {
@@ -40,9 +44,10 @@ const HomeScreen = ({ navigation }) => {
         data={episodes}
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => (
-          <EpisodeList episode={item} navigation={navigation} />
+          item && item.id ? <EpisodeList episode={item} navigation={navigation} /> : null // episode prop'unun varlığını kontrol edin
         )}
       />
+
       <Pagination page={page} setPage={setPage} />
     </View>
   );
