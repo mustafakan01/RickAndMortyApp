@@ -15,11 +15,7 @@ const HomeScreen = ({ navigation }) => {
       try {
         setLoading(true);
         const data = await getEpisodes(page);
-        if (data && data.results) { // Verinin beklediğiniz şekilde geldiğinden emin olun
-          setEpisodes(data.results);
-        } else {
-          setError("Unexpected data format received from API");
-        }
+        setEpisodes(data.results);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -44,10 +40,9 @@ const HomeScreen = ({ navigation }) => {
         data={episodes}
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => (
-          item && item.id ? <EpisodeList episode={item} navigation={navigation} /> : null // episode prop'unun varlığını kontrol edin
+          <EpisodeList episode={item} navigation={navigation} />
         )}
       />
-
       <Pagination page={page} setPage={setPage} />
     </View>
   );
