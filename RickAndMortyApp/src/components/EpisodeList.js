@@ -2,9 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const EpisodeList = ({ episode, navigation }) => {
-  // episode nesnesinin tanımlı olduğunu kontrol et
-  if (!episode || !episode.name) {
-    return null; // Eğer episode tanımlı değilse veya name özelliği tanımlı değilse, bileşen null dönsün
+  if (!episode) {
+    return null; // Eğer episode tanımlı değilse, bileşen null dönsün
   }
 
   return (
@@ -12,9 +11,9 @@ const EpisodeList = ({ episode, navigation }) => {
       style={styles.container}
       onPress={() => navigation.navigate('EpisodeDetail', { episodeId: episode.id })}
     >
-      <Text style={styles.title}>{episode.name}</Text>
-      <Text>{`Air Date: ${episode.air_date}`}</Text>
-      <Text>{`Episode: ${episode.episode}`}</Text>
+      <Text style={styles.title}>{episode.name ? episode.name : 'No name available'}</Text>
+      <Text>{`Air Date: ${episode.air_date ? episode.air_date : 'No air date available'}`}</Text>
+      <Text>{`Episode: ${episode.episode ? episode.episode : 'No episode available'}`}</Text>
     </TouchableOpacity>
   );
 };

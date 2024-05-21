@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
 import { getEpisodes } from '../api/api';
 import EpisodeList from '../components/EpisodeList';
 import Pagination from '../components/Pagination';
@@ -27,25 +27,50 @@ const HomeScreen = ({ navigation }) => {
   }, [page]);
 
   if (loading) {
-    return <Text>Loading...</Text>;
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
   }
 
   if (error) {
-    return <Text>Error: {error}</Text>;
+    return <Text style={styles.errorText}>Error: {error}</Text>;
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={episodes}
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => (
           <EpisodeList episode={item} navigation={navigation} />
         )}
+        contentContainerStyle={styles.list}
       />
       <Pagination page={page} setPage={setPage} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f8f9fa',
+  },
+  list: {
+    paddingHorizontal: 16,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  errorText: {
+    color: 'red',
+    textAlign: 'center',
+    marginTop: 20,
+  },
+});
 
 export default HomeScreen;

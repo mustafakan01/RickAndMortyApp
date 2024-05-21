@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad8213d3-37af-41f9-96fc-00f78d2edbe8" name="Changes" comment="app">
+      <change afterPath="$PROJECT_DIR$/RickAndMortyApp/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RickAndMortyApp/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RickAndMortyApp/src/api/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/src/api/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RickAndMortyApp/src/components/EpisodeList.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/src/components/EpisodeList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RickAndMortyApp/src/components/Pagination.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/src/components/Pagination.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RickAndMortyApp/src/redux/favoritesSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/src/redux/favoritesSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RickAndMortyApp/src/redux/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/src/redux/store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RickAndMortyApp/src/screens/EpisodeDetailScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/src/screens/EpisodeDetailScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RickAndMortyApp/src/screens/FavoriteCharactersScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/src/screens/FavoriteCharactersScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RickAndMortyApp/src/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/src/screens/HomeScreen.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

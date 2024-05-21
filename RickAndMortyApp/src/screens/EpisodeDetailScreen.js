@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { getEpisodeDetails } from '../api/api';
 
 const EpisodeDetailScreen = ({ route }) => {
@@ -24,29 +24,33 @@ const EpisodeDetailScreen = ({ route }) => {
   }, [episodeId]);
 
   if (loading) {
-    return <Text>Loading...</Text>;
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
   }
 
   if (error) {
-    return <Text>Error: {error}</Text>;
+    return <Text style={styles.errorText}>Error: {error}</Text>;
   }
 
   if (!episode) {
-    return <Text>Episode not found</Text>;
+    return <Text style={styles.errorText}>Episode not found</Text>;
   }
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{episode.name ? episode.name : 'No name available'}</Text>
-      <Text>{`Air Date: ${episode.air_date ? episode.air_date : 'No air date available'}`}</Text>
-      <Text>{`Episode: ${episode.episode ? episode.episode : 'No episode available'}`}</Text>
-      <Text>{`Characters:`}</Text>
+      <Text style={styles.text}>{`Air Date: ${episode.air_date ? episode.air_date : 'No air date available'}`}</Text>
+      <Text style={styles.text}>{`Episode: ${episode.episode ? episode.episode : 'No episode available'}`}</Text>
+      <Text style={styles.text}>Characters:</Text>
       {episode.characters && episode.characters.length > 0 ? (
         episode.characters.map((characterUrl, index) => (
-          <Text key={index}>{characterUrl}</Text>
+          <Text key={index} style={styles.characterText}>{characterUrl}</Text>
         ))
       ) : (
-        <Text>No characters available</Text>
+        <Text style={styles.text}>No characters available</Text>
       )}
     </View>
   );
@@ -54,11 +58,32 @@ const EpisodeDetailScreen = ({ route }) => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     padding: 16,
+    backgroundColor: '#f8f9fa',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  text: {
+    fontSize: 16,
+    marginBottom: 4,
+  },
+  characterText: {
+    fontSize: 14,
+    marginBottom: 2,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  errorText: {
+    color: 'red',
+    textAlign: 'center',
+    marginTop: 20,
   },
 });
 
