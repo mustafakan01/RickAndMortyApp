@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, Image, StyleSheet, TextInput } from 'react-native';
 import axios from 'axios';
 
 const EpisodeScreen = ({ route, navigation }) => {
   const { episode } = route.params;
   const [characters, setCharacters] = useState([]);
+  const [search, setSearch] = useState('');
+  const [filteredCharacters, setFilteredCharacters] = useState([]);
 
   useEffect(() => {
     fetchCharacters();
@@ -14,10 +16,18 @@ const EpisodeScreen = ({ route, navigation }) => {
     try {
       const characterPromises = episode.characters.map(url => axios.get(url));
       const characterResponses = await Promise.all(characterPromises);
-      setCharacters(characterResponses.map(response => response.data));
+      const charactersData = characterResponses.map(response => response.data);
+      setCharacters(charactersData);
+      setFilteredCharacters(charactersData);
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleSearch = (text) => {
+    setSearch(text);
+    const filtered = characters.filter(character => character.name.toLowerCase().includes(text.toLowerCase()));
+    setFilteredCharacters(filtered);
   };
 
   return (
@@ -27,8 +37,14 @@ const EpisodeScreen = ({ route, navigation }) => {
         <Text style={styles.episodeInfo}>Bölüm: {episode.episode}</Text>
         <Text style={styles.episodeInfo}>Yayın Tarihi: {episode.air_date}</Text>
       </View>
+      <TextInput
+        style={styles.searchBar}
+        placeholder="Karakter ara..."
+        value={search}
+        onChangeText={handleSearch}
+      />
       <FlatList
-        data={characters}
+        data={filteredCharacters}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <TouchableOpacity style={styles.characterCard} onPress={() => navigation.navigate('Character', { character: item })}>
@@ -68,6 +84,14 @@ const styles = StyleSheet.create({
   episodeInfo: {
     fontSize: 16,
     color: '#666',
+  },
+  searchBar: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    paddingHorizontal: 10,
+    borderRadius: 8,
+    marginVertical: 10,
   },
   characterCard: {
     flexDirection: 'row',
