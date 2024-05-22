@@ -1,42 +1,52 @@
-import React from 'react';
-import { View, Text, FlatList, Button, Alert, TouchableOpacity } from 'react-native';
+// src/screens/CharacterDetailsScreen.js
+import React, { useEffect, useState } from 'react';
+import { View, Text, Button } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeFavorite } from '../redux/favoritesSlice';
+import { getCharacterDetails } from '../services/api';
+import { addFavorite, removeFavorite, saveFavorites } from '../redux/favoritesSlice';
 
-const FavoriteCharactersScreen = ({ navigation }) => {
-  const favorites = useSelector(state => state.favorites.favoriteCharacters);
+const CharacterDetailsScreen = ({ route }) => {
+  const { characterId } = route.params;
+  const [character, setCharacter] = useState(null);
   const dispatch = useDispatch();
+  const favorites = useSelector(state => state.favorites);
 
-  const handleRemoveFavorite = (character) => {
-    Alert.alert(
-      'Remove Favorite',
-      `Are you sure you want to remove ${character.name} from favorites?`,
-      [
-        { text: 'Cancel', style: 'cancel' },
-        { text: 'OK', onPress: () => dispatch(removeFavorite(character)) },
-      ],
-      { cancelable: false }
-    );
+  useEffect(() => {
+    fetchCharacterDetails();
+  }, []);
+
+  const fetchCharacterDetails = async () => {
+    try {
+      const response = await getCharacterDetails(characterId);
+      setCharacter(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const renderItem = ({ item }) => (
-    <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 10 }}>
-      <TouchableOpacity onPress={() => navigation.navigate('CharacterDetail', { characterUrl: item.url })}>
-        <Text>{item.name}</Text>
-      </TouchableOpacity>
-      <Button title="Remove" onPress={() => handleRemoveFavorite(item)} />
-    </View>
-  );
+  const isFavorite = favorites.some(fav => fav.id === character?.id);
+
+  const handleFavoriteToggle = () => {
+    if (isFavorite) {
+      dispatch(removeFavorite(character));
+    } else {
+      dispatch(addFavorite(character));
+    }
+    dispatch(saveFavorites(favorites));
+  };
 
   return (
     <View>
-      <FlatList
-        data={favorites}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-      />
+      {character && (
+        <>
+          <Text>{character.name}</Text>
+          <Text>{character.status}</Text>
+          <Text>{character.species}</Text>
+          <Button title={isFavorite ? "Remove from Favorites" : "Add to Favorites"} onPress={handleFavoriteToggle} />
+        </>
+      )}
     </View>
   );
 };
 
-export default FavoriteCharactersScreen;
+export default CharacterDetailsScreen;

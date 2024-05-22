@@ -1,33 +1,13 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { Button, View } from 'react-native';
 
-const Pagination = ({ page, setPage }) => {
+const Pagination = ({ currentPage, setPage }) => {
   return (
-    <View style={styles.container}>
-      <Button
-        title="Previous"
-        onPress={() => setPage(page > 1 ? page - 1 : 1)}
-        disabled={page === 1}
-      />
-      <Text style={styles.pageText}>{page}</Text>
-      <Button title="Next" onPress={() => setPage(page + 1)} />
+    <View>
+      <Button title="Önceki" onPress={() => setPage(currentPage - 1)} disabled={currentPage === 1} />
+      <Button title="Sonraki" onPress={() => setPage(currentPage + 1)} />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 16,
-    backgroundColor: '#fff',
-    borderTopWidth: 1,
-    borderTopColor: '#ccc',
-  },
-  pageText: {
-    fontSize: 16,
-  },
-});
 
 export default Pagination;

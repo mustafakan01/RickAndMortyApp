@@ -1,38 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const favoritesSlice = createSlice({
+const favoriteSlice = createSlice({
   name: 'favorites',
   initialState: [],
   reducers: {
     addFavorite: (state, action) => {
       if (state.length < 10) {
         state.push(action.payload);
+        AsyncStorage.setItem('favorites', JSON.stringify(state));
       } else {
-        // Notification logic here
+        alert('Favori karakter ekleme sayısını aştınız. Başka bir karakteri favorilerden çıkarmalısınız.');
       }
     },
     removeFavorite: (state, action) => {
-      return state.filter(character => character.id !== action.payload.id);
+      const index = state.findIndex(character => character.id === action.payload.id);
+      if (index !== -1) {
+        state.splice(index, 1);
+        AsyncStorage.setItem('favorites', JSON.stringify(state));
+      }
     },
     setFavorites: (state, action) => {
       return action.payload;
     }
-  }
+  },
 });
 
-export const { addFavorite, removeFavorite, setFavorites } = favoritesSlice.actions;
-
-// AsyncStorage integration
-export const loadFavorites = () => async dispatch => {
-  const favorites = await AsyncStorage.getItem('favorites');
-  if (favorites) {
-    dispatch(setFavorites(JSON.parse(favorites)));
-  }
-};
-
-export const saveFavorites = favorites => async () => {
-  await AsyncStorage.setItem('favorites', JSON.stringify(favorites));
-};
-
-export default favoritesSlice.reducer;
+export const { addFavorite, removeFavorite, setFavorites } = favoriteSlice.actions;
+export default favoriteSlice.reducer;

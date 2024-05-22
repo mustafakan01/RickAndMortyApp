@@ -5,16 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad8213d3-37af-41f9-96fc-00f78d2edbe8" name="Changes" comment="app">
-      <change afterPath="$PROJECT_DIR$/RickAndMortyApp/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RickAndMortyApp/src/navigation/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RickAndMortyApp/src/screens/CharacterScreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RickAndMortyApp/src/screens/EpisodeScreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RickAndMortyApp/src/screens/FavoritesScreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RickAndMortyApp/src/store/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RickAndMortyApp/src/styles.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RickAndMortyApp/src/styles/globalStyles.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RickAndMortyApp/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RickAndMortyApp/src/api/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/src/api/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RickAndMortyApp/src/components/EpisodeList.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/src/components/EpisodeList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RickAndMortyApp/src/components/Pagination.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/src/components/Pagination.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RickAndMortyApp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RickAndMortyApp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RickAndMortyApp/src/api/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/src/services/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RickAndMortyApp/src/redux/favoritesSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/src/redux/favoritesSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RickAndMortyApp/src/redux/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/src/redux/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RickAndMortyApp/src/screens/CharacterDetailScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/src/screens/CharacterDetailScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RickAndMortyApp/src/screens/EpisodeDetailScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/src/screens/EpisodeDetailScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RickAndMortyApp/src/screens/FavoriteCharactersScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/src/screens/FavoriteCharactersScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RickAndMortyApp/src/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/RickAndMortyApp/src/screens/HomeScreen.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,7 +84,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Github\Rick-Morty-Native\RickAndMortyApp\src" />
+      <recent name="D:\Github\RickAndMortyApp\RickAndMortyApp\src\styles" />
+      <recent name="D:\Github\RickAndMortyApp\RickAndMortyApp\src\redux" />
+      <recent name="D:\Github\RickAndMortyApp\RickAndMortyApp\src\services" />
+      <recent name="D:\Github\RickAndMortyApp\RickAndMortyApp\src" />
+      <recent name="D:\Github\RickAndMortyApp\RickAndMortyApp\src\store" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

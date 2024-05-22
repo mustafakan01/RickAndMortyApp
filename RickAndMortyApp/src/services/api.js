@@ -1,13 +1,16 @@
+// src/services/api.js
 import axios from 'axios';
 
 const API_URL = 'https://rickandmortyapi.com/api';
 
-export const getEpisodes = async (page) => {
-  const response = await axios.get(`${API_URL}/episode?page=${page}`);
-  return response.data;
+export const getEpisodes = (page = 1) => {
+  return axios.get(`${API_URL}/episode?page=${page}`);
 };
 
-export const getEpisodeDetails = async (id) => {
-  const response = await axios.get(`${API_URL}/episode/${id}`);
-  return response.data;
+export const getEpisodeDetails = (id) => {
+  return axios.get(`${API_URL}/episode/${id}`);
+};
+
+export const getCharacterDetails = (id) => {
+  return axios.get(`${API_URL}/character/${id}`);
 };
